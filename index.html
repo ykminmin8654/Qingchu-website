@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Qingchu 清楚 — A programming language where human notation comes first</title>
+  <meta name="description" content="Qingchu is a readable programming language built around speech-like keywords, math syntax, typed bindings, and context markers. Code should read like human speech." />
+  <meta name="theme-color" content="#008080" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="shared/tokens.css" />
+  <link rel="stylesheet" href="shared/base.css" />
+  <link rel="stylesheet" href="shared/nav.css" />
+  <link rel="stylesheet" href="shared/motion.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-page="home">
+
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb--teal"></span>
+    <span class="orb orb--cyan"></span>
+    <span class="orb orb--lime"></span>
+  </div>
+
+  <div id="nav-mount"></div>
+
+  <main>
+
+    <!-- ============================================================
+         1. HERO
+         ============================================================ -->
+    <section class="hero">
+      <div class="container hero__grid">
+
+        <div class="hero__copy">
+          <span class="eyebrow eyebrow--animated">
+            <span class="eyebrow__dot"></span>
+            v0.1.0 · Core language complete
+          </span>
+
+          <h1 class="hero__title">
+            <span class="reveal">Code that reads</span><br />
+            <span class="reveal accent">like human speech.</span>
+          </h1>
+
+          <p class="hero__lede reveal" data-delay="200">
+            <strong>Qingchu (清楚)</strong> is a programming language built around one
+            principle: code should read like human speech and mathematical notation.
+            Speech-like keywords, math syntax, typed bindings, and context markers —
+            readable at a glance.
+          </p>
+
+          <div class="hero__actions reveal" data-delay="400">
+            <a href="docs.html" class="btn btn--primary btn--glow">
+              Read the docs <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener" class="btn btn--secondary">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+          </div>
+
+          <ul class="hero__meta reveal" data-delay="600">
+            <li><i class="fas fa-check"></i> MIT licensed</li>
+            <li><i class="fas fa-check"></i> Java 17+ interpreter</li>
+            <li><i class="fas fa-check"></i> REPL included</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual reveal" data-delay="300">
+          <div class="hero__frame">
+            <div class="hero__frame-bar">
+              <span></span><span></span><span></span>
+              <span class="hero__frame-url">hello.qc</span>
+            </div>
+<pre class="hero__code"><span class="c">!! A simple Qingchu program !!</span>
+
+<span class="k">let</span> <span class="v">name</span> <span class="o">=</span> Bob
+    <span class="v">name</span> <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">print</span> Hello <span class="v">name_string</span> <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">let</span> <span class="v">price</span> <span class="o">=</span> <span class="n">10</span> <span class="o">.</span>
+<span class="k">math</span> <span class="k">let</span> <span class="v">quantity</span> <span class="o">=</span> <span class="n">5</span> <span class="o">.</span>
+<span class="k">math</span> <span class="k">let</span> <span class="v">total</span> <span class="o">=</span> <span class="v">price</span> <span class="o">*</span> <span class="v">quantity</span> <span class="o">.</span>
+<span class="k">math</span> <span class="k">print</span> <span class="v">total</span> <span class="o">.</span></pre>
+            <div class="hero__output">
+              <b>Output</b>
+              Hello Bob<br />
+              50
+            </div>
+          </div>
+          <div class="hero__float hero__float--1">let</div>
+          <div class="hero__float hero__float--2">math</div>
+          <div class="hero__float hero__float--3">ts</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. TRUST BAR
+         ============================================================ -->
+    <section class="trust-bar">
+      <div class="container trust-bar__inner">
+        <span class="trust-bar__label">One sentence, one statement — the vocabulary:</span>
+        <div class="trust-bar__logos">
+          <span>let</span>
+          <span>ts</span>
+          <span>print</span>
+          <span>ask</span>
+          <span>new</span>
+          <span>if / else</span>
+          <span>when</span>
+          <span>define</span>
+          <span>calculate</span>
+          <span>math</span>
+          <span>string</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. FEATURES — "What makes it readable"
+         ============================================================ -->
+    <section class="section" id="features">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Features</span>
+          <h2 class="section__title">What makes it readable</h2>
+          <p class="section__lede">
+            Every construct in Qingchu exists to make code clearer at a glance.
+          </p>
+        </header>
+
+        <div class="grid-products" data-stagger>
+
+          <article class="product-card">
+            <div class="product-card__top">
+              <span class="product-card__status product-card__status--live">
+                <span class="pulse-dot"></span> Shipped
+              </span>
+            </div>
+            <div class="product-card__icon product-card__icon--teal">
+              <i class="fas fa-comment-dots"></i>
+            </div>
+            <h3 class="product-card__title">Human notation, everywhere</h3>
+            <p class="product-card__desc">
+              Qingchu uses words and math symbols — not programmer punctuation.
+              <code>print</code>, <code>ask</code>, <code>when</code>, <code>define</code> are
+              speech-like keywords; <code>&gt;</code>, <code>+</code>, <code>*</code>, <code>=</code>
+              are plain math. A <code>.</code> ends a statement, like a sentence.
+            </p>
+            <div class="product-card__snippet"><span class="k">print</span> Hello World <span class="o">.</span></div>
+            <div class="product-card__tags">
+              <span class="product-card__tag">speech-like</span>
+              <span class="product-card__tag">indentation blocks</span>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__top">
+              <span class="product-card__status product-card__status--live">
+                <span class="pulse-dot"></span> Shipped
+              </span>
+            </div>
+            <div class="product-card__icon product-card__icon--cyan">
+              <i class="fas fa-tags"></i>
+            </div>
+            <h3 class="product-card__title">Typed bindings</h3>
+            <p class="product-card__desc">
+              Every binding has a type, visible at the point of use. A binding is
+              referenced as <code>name_type</code> — so <code>name_string</code>,
+              <code>count_number</code>, <code>flag_boolean</code>. The type is part of the name.
+            </p>
+            <div class="product-card__snippet"><span class="k">let</span> name <span class="o">=</span> Bob
+    name <span class="k">ts</span> <span class="t">string</span></div>
+            <div class="product-card__tags">
+              <span class="product-card__tag">number</span>
+              <span class="product-card__tag">string</span>
+              <span class="product-card__tag">boolean</span>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__top">
+              <span class="product-card__status product-card__status--live">
+                <span class="pulse-dot"></span> Shipped
+              </span>
+            </div>
+            <div class="product-card__icon product-card__icon--lime">
+              <i class="fas fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="product-card__title">Context markers</h3>
+            <p class="product-card__desc">
+              <code>math</code> and <code>string</code> drop the type suffix so code reads
+              naturally. Inside <code>math</code>, <code>total</code> means <code>total_number</code>;
+              inside <code>string</code>, <code>name</code> means <code>name_string</code>.
+            </p>
+            <div class="product-card__snippet"><span class="k">math</span> <span class="k">let</span> total <span class="o">=</span> price <span class="o">*</span> quantity <span class="o">.</span>
+<span class="k">math</span> <span class="k">print</span> total <span class="o">.</span></div>
+            <div class="product-card__tags">
+              <span class="product-card__tag">math</span>
+              <span class="product-card__tag">string</span>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__top">
+              <span class="product-card__status product-card__status--live">
+                <span class="pulse-dot"></span> Shipped
+              </span>
+            </div>
+            <div class="product-card__icon product-card__icon--teal">
+              <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="product-card__title">Constants &amp; reassignment</h3>
+            <p class="product-card__desc">
+              Mark a binding <code>constant</code> and it can't be reassigned. To change an
+              existing binding, use <code>new</code> — an explicit, readable reassignment.
+            </p>
+            <div class="product-card__snippet"><span class="k">let</span> pi <span class="o">=</span> 3.14
+    pi <span class="k">ts</span> <span class="t">constant number</span>
+
+<span class="k">math</span> <span class="k">new</span> count <span class="o">=</span> count <span class="o">+</span> 1 <span class="o">.</span></div>
+            <div class="product-card__tags">
+              <span class="product-card__tag">constant</span>
+              <span class="product-card__tag">new</span>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__top">
+              <span class="product-card__status product-card__status--live">
+                <span class="pulse-dot"></span> Shipped
+              </span>
+            </div>
+            <div class="product-card__icon product-card__icon--cyan">
+              <i class="fas fa-code-branch"></i>
+            </div>
+            <h3 class="product-card__title">Speech-like control flow</h3>
+            <p class="product-card__desc">
+              Branch with <code>if / else</code>, loop with <code>when</code> — loops read like
+              conditions ("when i &lt; 3, print…"), and indentation opens and closes blocks.
+            </p>
+            <div class="product-card__snippet"><span class="k">math</span> <span class="k">when</span> i <span class="o">&lt;</span> 3
+    <span class="k">print</span> Count: i <span class="o">.</span>
+    <span class="k">new</span> i <span class="o">=</span> i <span class="o">+</span> 1 <span class="o">.</span></div>
+            <div class="product-card__tags">
+              <span class="product-card__tag">if / else</span>
+              <span class="product-card__tag">when</span>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__top">
+              <span class="product-card__status product-card__status--beta">
+                <span class="pulse-dot pulse-dot--warn"></span> Partial
+              </span>
+            </div>
+            <div class="product-card__icon product-card__icon--lime">
+              <i class="fas fa-cube"></i>
+            </div>
+            <h3 class="product-card__title">Functions</h3>
+            <p class="product-card__desc">
+              Define functions with <code>define … as …</code> and return values with
+              <code>calculate</code>. Parsing is complete; execution is on the roadmap.
+            </p>
+            <div class="product-card__snippet"><span class="k">define</span> double(x) <span class="k">as</span> x <span class="o">*</span> 2
+    x <span class="k">ts</span> <span class="t">number</span>
+    double <span class="k">ts</span> <span class="t">number</span></div>
+            <div class="product-card__tags">
+              <span class="product-card__tag">define</span>
+              <span class="product-card__tag">calculate</span>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="center-cta">
+          <a href="docs.html" class="btn btn--secondary">
+            Full language reference <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. WHY READABLE
+         ============================================================ -->
+    <section class="section section--tint" id="why">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Why Qingchu</span>
+          <h2 class="section__title">Clear at a glance</h2>
+          <p class="section__lede">
+            清楚 (qīngchu) means <em>clear, distinct, easy to understand</em>. That's the goal.
+          </p>
+        </header>
+
+        <div class="reasons">
+          <div class="reason reveal" data-delay="100">
+            <div class="reason__icon reason__icon--teal">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3 class="reason__title">Readable by design</h3>
+            <p class="reason__desc">
+              No cryptic punctuation. Statements end with a period, blocks are indented,
+              and types travel with names — you can read Qingchu out loud.
+            </p>
+          </div>
+
+          <div class="reason reveal" data-delay="200">
+            <div class="reason__icon reason__icon--cyan">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <h3 class="reason__title">Types you can see</h3>
+            <p class="reason__desc">
+              <code>name_string</code> tells you exactly what's in the box. Constants are
+              locked with <code>constant</code>, and reassignment is always explicit with <code>new</code>.
+            </p>
+          </div>
+
+          <div class="reason reveal" data-delay="300">
+            <div class="reason__icon reason__icon--lime">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="reason__title">Errors that explain themselves</h3>
+            <p class="reason__desc">
+              Every error says what went wrong, on which line, in which statement —
+              in plain English, not stack-trace soup.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. GET STARTED — steps
+         ============================================================ -->
+    <section class="section" id="get-started">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Get started</span>
+          <h2 class="section__title">Run your first program in 3 steps</h2>
+          <p class="section__lede">
+            Requires Java 17 or higher. Compile the interpreter, then run a file — or open the REPL.
+          </p>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal" data-delay="100">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Compile</h3>
+            <p class="step__desc">
+              Build the Java sources from the repo:
+            </p>
+            <div class="terminal" style="margin-top:12px;"><span class="prompt">$</span> javac <span class="flag">-encoding UTF-8 -d out</span> src/main/java/qingchu/**/*.java</div>
+          </li>
+          <li class="step reveal" data-delay="200">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Run a file</h3>
+            <p class="step__desc">
+              Point the interpreter at any <code>.qc</code> program:
+            </p>
+            <div class="terminal" style="margin-top:12px;"><span class="prompt">$</span> java <span class="flag">-cp out</span> qingchu.Main run examples/hello.qc</div>
+          </li>
+          <li class="step reveal" data-delay="300">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Or open the REPL</h3>
+            <p class="step__desc">
+              Run with no arguments for an interactive session:
+            </p>
+            <div class="terminal" style="margin-top:12px;"><span class="prompt">$</span> java <span class="flag">-cp out</span> qingchu.Main</div>
+          </li>
+        </ol>
+
+        <div class="center-cta">
+          <a href="examples.html" class="btn btn--primary btn--glow">
+            See example programs <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. VOCABULARY CHIPS
+         ============================================================ -->
+    <section class="section section--tight">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Vocabulary</span>
+          <h2 class="section__title">The whole language fits on a card</h2>
+          <p class="section__lede">
+            Twelve keywords, three types, two context markers. Hover to explore.
+          </p>
+        </header>
+
+        <div class="chips chips--animated">
+          <span class="chip chip--keyword">let</span>
+          <span class="chip chip--keyword">ts</span>
+          <span class="chip chip--keyword">ats</span>
+          <span class="chip chip--keyword">print</span>
+          <span class="chip chip--keyword">ask</span>
+          <span class="chip chip--keyword">new</span>
+          <span class="chip chip--keyword">if</span>
+          <span class="chip chip--keyword">else</span>
+          <span class="chip chip--keyword">when</span>
+          <span class="chip chip--keyword">define</span>
+          <span class="chip chip--keyword">calculate</span>
+          <span class="chip chip--keyword">const</span>
+          <span class="chip chip--math">math</span>
+          <span class="chip chip--math">string</span>
+          <span class="chip chip--type">number</span>
+          <span class="chip chip--type">string</span>
+          <span class="chip chip--type">boolean</span>
+          <span class="chip chip--misc">!! comments !!</span>
+          <span class="chip chip--misc">\ escapes</span>
+          <span class="chip chip--misc">. terminator</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. STATUS / ROADMAP
+         ============================================================ -->
+    <section class="section section--tint" id="status">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Shipping in public</span>
+          <h2 class="section__title">Status &amp; roadmap</h2>
+          <p class="section__lede">
+            v0.1.0 — core language complete. Here's what works today and what's next.
+          </p>
+        </header>
+
+        <ul class="changelog">
+          <li class="changelog__item reveal">
+            <span class="changelog__date">v0.1.0 · shipped</span>
+            <h3 class="changelog__title">Core language complete</h3>
+            <p class="changelog__desc">
+              <code>let</code> declarations with <code>ts</code> type blocks, <code>math</code> /
+              <code>string</code> context markers, <code>print</code> output, <code>ask</code> input,
+              <code>new</code> reassignment, <code>if / else</code> branching, <code>when</code> loops,
+              the <code>constant</code> modifier, comments (<code>!!</code> and <code>!!!</code>),
+              escapes, and readable errors with line numbers and statement context.
+            </p>
+          </li>
+          <li class="changelog__item reveal is-planned">
+            <span class="changelog__date">planned</span>
+            <h3 class="changelog__title">Function calling</h3>
+            <p class="changelog__desc">
+              Parsing for <code>define</code> and <code>calculate</code> already works; execution is pending.
+            </p>
+          </li>
+          <li class="changelog__item reveal is-planned">
+            <span class="changelog__date">planned</span>
+            <h3 class="changelog__title">Lists and maps</h3>
+            <p class="changelog__desc">
+              Collection types to round out the type system beyond number, string, and boolean.
+            </p>
+          </li>
+          <li class="changelog__item reveal is-planned">
+            <span class="changelog__date">planned</span>
+            <h3 class="changelog__title">code_* embedding modes</h3>
+            <p class="changelog__desc">
+              Embed LaTeX, Python, Java, HTML, and CSS directly — plus LaTeX ↔ Unicode conversion.
+            </p>
+          </li>
+          <li class="changelog__item reveal is-planned">
+            <span class="changelog__date">planned</span>
+            <h3 class="changelog__title">Standard library</h3>
+            <p class="changelog__desc">
+              Rounding helpers, string functions, and more — shipped with the interpreter.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. PROJECT STRUCTURE
+         ============================================================ -->
+    <section class="section">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Under the hood</span>
+          <h2 class="section__title">A small, honest pipeline</h2>
+          <p class="section__lede">
+            Text → tokens → AST → run. Four packages, one Java entry point.
+          </p>
+        </header>
+
+        <div class="docs-grid">
+          <div class="code-window reveal" data-delay="100">
+            <div class="code-window__bar">
+              <span></span><span></span><span></span>
+              <span class="code-window__name">qingchu/ — project structure</span>
+            </div>
+<pre>qingchu/
+├── src/main/java/qingchu/
+│   ├── Main.java          <span class="c">— entry point</span>
+│   ├── lexer/             <span class="c">— text → tokens</span>
+│   ├── error/             <span class="c">— error types</span>
+│   ├── parse/             <span class="c">— tokens → AST</span>
+│   └── runtime/           <span class="c">— runs the AST</span>
+├── examples/              <span class="c">— sample .qc programs</span>
+├── docs/                  <span class="c">— website and documentation</span>
+└── README.md</pre>
+          </div>
+
+          <div class="reveal" data-delay="200" style="align-self:center;">
+            <h3 style="font-size:1.3rem;">Lexer → Parser → Interpreter</h3>
+            <p class="prose" style="color:var(--ink-soft);">
+              The <strong>lexer</strong> turns raw text into tokens (keywords, operators,
+              terminators). The <strong>parser</strong> builds an AST from indentation-delimited
+              statements. The <strong>runtime</strong> walks the tree with scopes, typed bindings,
+              and values — reporting every failure as a readable one-line error.
+            </p>
+            <p class="prose" style="color:var(--ink-soft);">
+              Written in plain Java 17, no dependencies, tested with JUnit across the
+              lexer, parser, and interpreter.
+            </p>
+            <a href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+              Browse the source <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. FAQ
+         ============================================================ -->
+    <section class="section section--tint" id="faq">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Questions</span>
+          <h2 class="section__title">Frequently asked</h2>
+        </header>
+
+        <div class="faq">
+          <details class="faq__item reveal">
+            <summary>Why "Qingchu"?</summary>
+            <p>
+              清楚 (qīngchu) means <em>clear, distinct, easy to understand</em>.
+              That's the goal: a language where the code is clear at a glance.
+            </p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Why does the type appear in the variable name?</summary>
+            <p>
+              Because you almost never have to write it twice. Bindings are referenced as
+              <code>name_type</code> (<code>name_string</code>, <code>count_number</code>,
+              <code>flag_boolean</code>) so the type is visible at every point of use. When that
+              gets noisy, the <code>math</code> and <code>string</code> context markers drop the
+              suffix — inside <code>math</code>, <code>total</code> just means <code>total_number</code>.
+            </p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>How do I end a statement? How do I open a block?</summary>
+            <p>
+              A lone <code>.</code> ends a statement, like a full stop at the end of a sentence.
+              Blocks are opened and closed by indentation — no braces, no <code>end</code> keyword.
+              Use <code>\</code> to escape characters like <code>\.</code>, <code>\_</code>, or <code>\\</code>.
+            </p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>What do errors look like?</summary>
+            <p>
+              Specific and readable, always in the same shape:
+              <code>error &lt;what went wrong&gt; on line &lt;N&gt;(&lt;which statement&gt;)</code> —
+              for example <code>error cannot reassign constant on line 12(new statement)</code>.
+            </p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Can I use it yet?</summary>
+            <p>
+              Yes — clone the repo, compile with Java 17+, and run <code>.qc</code> files or the
+              REPL. The core language (declarations, types, context markers, printing, input,
+              branching, loops, constants, comments, escapes) is complete in v0.1.0. Function
+              <em>calling</em>, lists/maps, and the standard library are planned.
+            </p>
+          </details>
+
+          <details class="faq__item reveal">
+            <summary>Is it free? Who owns it?</summary>
+            <p>
+              Qingchu is open source under the MIT license, developed publicly at
+              <a href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener">
+              github.com/ykminmin8654/Qingchu</a>. Issues and pull requests are welcome.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. FINAL CTA
+         ============================================================ -->
+    <section class="section">
+      <div class="container">
+        <div class="cta reveal">
+          <div class="cta__copy">
+            <h2>Write your first sentence of code.</h2>
+            <p>Clone it, compile it, and say <code>print Hello World .</code> — it takes 2 minutes.</p>
+          </div>
+          <a href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener" class="btn btn--primary btn--glow">
+            <i class="fab fa-github"></i> Get Qingchu on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="shared/nav.js" defer></script>
+  <script src="shared/motion.js" defer></script>
+
+</body>
+</html>

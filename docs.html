@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Language Reference — Qingchu 清楚</title>
+  <meta name="description" content="The complete Qingchu language reference: declarations, types, context markers, output, input, control flow, functions, comments, escapes, and errors." />
+  <meta name="theme-color" content="#008080" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="shared/tokens.css" />
+  <link rel="stylesheet" href="shared/base.css" />
+  <link rel="stylesheet" href="shared/nav.css" />
+  <link rel="stylesheet" href="shared/motion.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-page="language">
+
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb--teal"></span>
+    <span class="orb orb--cyan"></span>
+    <span class="orb orb--lime"></span>
+  </div>
+
+  <div id="nav-mount"></div>
+
+  <main>
+
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="hero" style="padding-bottom: var(--s-6);">
+      <div class="container">
+        <span class="eyebrow eyebrow--animated">
+          <span class="eyebrow__dot"></span>
+          Documentation · v0.1.0
+        </span>
+        <h1 class="hero__title" style="font-size: var(--fs-h1);">
+          The <span class="accent">Qingchu</span> language reference
+        </h1>
+        <p class="hero__lede">
+          Everything the language can say today — with runnable examples for every
+          construct. Statements end with <code style="font-family:var(--mono);">.</code>,
+          blocks open with indentation, and types travel inside names.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DOCS BODY
+         ============================================================ -->
+    <section class="section" style="padding-top: var(--s-7);">
+      <div class="container docs-layout">
+
+        <!-- Table of contents -->
+        <aside class="docs-toc" aria-label="On this page">
+          <a href="#declarations">Declarations</a>
+          <a href="#types">Types &amp; bindings</a>
+          <a href="#context">Context markers</a>
+          <a href="#constants">Constants</a>
+          <a href="#output">Output — print</a>
+          <a href="#input">Input — ask</a>
+          <a href="#branching">Branching — if / else</a>
+          <a href="#loops">Loops — when</a>
+          <a href="#functions">Functions — define</a>
+          <a href="#comments">Comments &amp; escapes</a>
+          <a href="#errors">Error messages</a>
+          <a href="#cheatsheet">Cheat sheet</a>
+        </aside>
+
+        <div>
+
+          <!-- DECLARATIONS -->
+          <article class="docs-section" id="declarations">
+            <h2>Declarations <a class="hash" href="#declarations">#</a></h2>
+            <p>
+              <code>let</code> creates a binding. The indented <code>ts</code> line declares
+              its type. Abbreviations: <code>ts</code> = <code>type_is</code>,
+              <code>ats</code> = <code>above_type_is</code>, <code>const</code> = <code>constant</code>.
+            </p>
+            <div class="docs-grid">
+              <div class="code-window reveal">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">declare.qc</span>
+                </div>
+<pre><span class="k">let</span> name <span class="o">=</span> Bob
+    name <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">print</span> Hello name_string <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>Hello Bob</div>
+              </div>
+              <div class="reveal prose" data-delay="100" style="align-self:center;">
+                <p>
+                  A declaration has two parts: the <strong>binding</strong>
+                  (<code>let name = Bob</code>) and its <strong>type block</strong>
+                  (<code>name ts string</code>). The type block is indented under the
+                  binding it describes.
+                </p>
+                <p>
+                  Once declared, the binding is referenced by name plus type:
+                  <code>name_string</code>. That suffix is not decoration — it's how the
+                  runtime finds the right value.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- TYPES -->
+          <article class="docs-section" id="types">
+            <h2>Types &amp; bindings <a class="hash" href="#types">#</a></h2>
+            <p>Three built-in types today, each with its own reference suffix:</p>
+            <table class="qc-table reveal">
+              <thead>
+                <tr><th>Type</th><th>Reference suffix</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>number</code></td>
+                  <td><code>_number</code></td>
+                  <td><code>total_number</code> — integers and decimals (3, 3.14)</td>
+                </tr>
+                <tr>
+                  <td><code>string</code></td>
+                  <td><code>_string</code></td>
+                  <td><code>greeting_string</code> — text like <code>Hello</code></td>
+                </tr>
+                <tr>
+                  <td><code>boolean</code></td>
+                  <td><code>_boolean</code></td>
+                  <td><code>flag_boolean</code> — truth values</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- CONTEXT MARKERS -->
+          <article class="docs-section" id="context">
+            <h2>Context markers <a class="hash" href="#context">#</a></h2>
+            <p>
+              Prefix a statement with <code>math</code> or <code>string</code> to drop the
+              type suffix so code reads naturally. This is the whole purpose of context markers.
+            </p>
+            <div class="docs-grid">
+              <div class="code-window reveal">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">math-context.qc</span>
+                </div>
+<pre><span class="k">math</span> <span class="k">let</span> total <span class="o">=</span> price <span class="o">*</span> quantity <span class="o">.</span>
+<span class="k">math</span> <span class="k">print</span> total <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Means</b>total → total_number inside math</div>
+              </div>
+              <div class="code-window reveal" data-delay="100">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">string-context.qc</span>
+                </div>
+<pre><span class="k">string</span> <span class="k">let</span> first <span class="o">=</span> Alice <span class="o">.</span>
+<span class="k">string</span> <span class="k">let</span> last <span class="o">=</span> Smith <span class="o">.</span>
+<span class="k">string</span> <span class="k">print</span> Full name: first last <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>Full name: Alice Smith</div>
+              </div>
+            </div>
+            <table class="qc-table reveal" style="margin-top: var(--s-5);">
+              <thead><tr><th>Keyword</th><th>Effect</th></tr></thead>
+              <tbody>
+                <tr><td><code>math</code></td><td>Bare names resolve to <code>_number</code></td></tr>
+                <tr><td><code>string</code></td><td>Bare names resolve to <code>_string</code></td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <!-- CONSTANTS -->
+          <article class="docs-section" id="constants">
+            <h2>Constants <a class="hash" href="#constants">#</a></h2>
+            <p>
+              Add the <code>constant</code> (or <code>const</code>) modifier in the type
+              block and the binding can't be reassigned later.
+            </p>
+            <div class="code-window reveal" style="max-width: 560px;">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">constant.qc</span>
+              </div>
+<pre><span class="k">let</span> pi <span class="o">=</span> 3.14
+    pi <span class="k">ts</span> <span class="t">constant number</span>
+
+<span class="k">print</span> pi_constant_number <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Output</b>3.14</div>
+            </div>
+          </article>
+
+          <!-- OUTPUT -->
+          <article class="docs-section" id="output">
+            <h2>Output — print <a class="hash" href="#output">#</a></h2>
+            <p>
+              Everything between <code>print</code> and the terminating <code>.</code> is
+              content. Words that match a declared binding are resolved; everything else
+              prints as text.
+            </p>
+            <div class="code-window reveal" style="max-width: 560px;">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">print.qc</span>
+              </div>
+<pre><span class="k">print</span> Hello World <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Output</b>Hello World</div>
+            </div>
+          </article>
+
+          <!-- INPUT -->
+          <article class="docs-section" id="input">
+            <h2>Input — ask <a class="hash" href="#input">#</a></h2>
+            <p>
+              <code>ask</code> prints the question, waits for input, and binds the answer.
+              The indented <code>response = …</code> block names the binding that receives it.
+            </p>
+            <div class="code-window reveal" style="max-width: 560px;">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">greet.qc</span>
+              </div>
+<pre><span class="k">ask</span> What is your name? <span class="o">.</span>
+    response <span class="o">=</span> name
+        name <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">string</span> <span class="k">print</span> Nice to meet you, name <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Session</b>What is your name? <span class="n">Ada</span>
+Nice to meet you, Ada</div>
+            </div>
+          </article>
+
+          <!-- BRANCHING -->
+          <article class="docs-section" id="branching">
+            <h2>Branching — if / else <a class="hash" href="#branching">#</a></h2>
+            <p>
+              Conditions read like math. Blocks are indented; <code>else</code> continues at
+              the same level. Nested branches compose the same way.
+            </p>
+            <div class="docs-grid">
+              <div class="code-window reveal">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">if.qc</span>
+                </div>
+<pre><span class="k">let</span> age <span class="o">=</span> 25
+    age <span class="k">ts</span> <span class="t">number</span>
+
+<span class="k">math</span> <span class="k">if</span> age <span class="o">&gt;</span> 18
+    <span class="k">print</span> You are an adult <span class="o">.</span>
+<span class="k">else</span>
+    <span class="k">print</span> You are a minor <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>You are an adult</div>
+              </div>
+              <div class="code-window reveal" data-delay="100">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">nested-if.qc</span>
+                </div>
+<pre><span class="k">math</span> <span class="k">if</span> score <span class="o">&gt;</span> 18
+    <span class="k">print</span> grade A <span class="o">.</span>
+<span class="k">else</span>
+    <span class="k">math</span> <span class="k">if</span> score <span class="o">&gt;</span> 12
+        <span class="k">print</span> grade B <span class="o">.</span>
+    <span class="k">else</span>
+        <span class="k">print</span> grade C <span class="o">.</span></pre>
+              </div>
+            </div>
+          </article>
+
+          <!-- LOOPS -->
+          <article class="docs-section" id="loops">
+            <h2>Loops — when <a class="hash" href="#loops">#</a></h2>
+            <p>
+              <code>when</code> repeats while its condition holds. Reassign loop state with
+              <code>new</code> — explicit, readable mutation.
+            </p>
+            <div class="docs-grid">
+              <div class="code-window reveal">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">loop.qc</span>
+                </div>
+<pre><span class="k">let</span> i <span class="o">=</span> 0
+    i <span class="k">ts</span> <span class="t">number</span>
+
+<span class="k">math</span> <span class="k">when</span> i <span class="o">&lt;</span> 3
+    <span class="k">print</span> Count: i <span class="o">.</span>
+    <span class="k">new</span> i <span class="o">=</span> i <span class="o">+</span> 1 <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>Count: 0
+Count: 1
+Count: 2</div>
+              </div>
+              <div class="code-window reveal" data-delay="100">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">countdown.qc</span>
+                </div>
+<pre><span class="k">math</span> <span class="k">when</span> n <span class="o">&gt;</span> 0
+    <span class="k">print</span> n <span class="o">.</span>
+    <span class="k">new</span> n <span class="o">=</span> n <span class="o">-</span> 1 <span class="o">.</span>
+
+<span class="k">print</span> Liftoff <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>5 4 3 2 1
+Liftoff</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- FUNCTIONS -->
+          <article class="docs-section" id="functions">
+            <h2>Functions — define <a class="hash" href="#functions">#</a></h2>
+            <p>
+              <code>define name(params) as …</code> declares a function; <code>calculate</code>
+              returns a value from a block body. Parsing is complete in v0.1.0 — calling
+              execution is on the roadmap.
+            </p>
+            <div class="docs-grid">
+              <div class="code-window reveal">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">expression body</span>
+                </div>
+<pre><span class="k">define</span> double(x) <span class="k">as</span> x <span class="o">*</span> 2
+    x <span class="k">ts</span> <span class="t">number</span>
+    double <span class="k">ts</span> <span class="t">number</span></pre>
+              </div>
+              <div class="code-window reveal" data-delay="100">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">block body</span>
+                </div>
+<pre><span class="k">define</span> square(x) <span class="k">as</span>
+    x <span class="k">ts</span> <span class="t">number</span>
+    square <span class="k">ts</span> <span class="t">number</span>
+
+    <span class="k">let</span> result <span class="o">=</span> x_number <span class="o">*</span> x_number
+        result <span class="k">ts</span> <span class="t">number</span>
+
+    <span class="k">calculate</span> result_number <span class="o">.</span></pre>
+              </div>
+            </div>
+          </article>
+
+          <!-- COMMENTS & ESCAPES -->
+          <article class="docs-section" id="comments">
+            <h2>Comments &amp; escapes <a class="hash" href="#comments">#</a></h2>
+            <div class="docs-grid">
+              <div class="code-window reveal">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">comments.qc</span>
+                </div>
+<pre><span class="c">!! This is a single-line comment !!</span>
+
+<span class="c">!!! This is a multi-line comment
+    it continues here
+!!!</span></pre>
+              </div>
+              <div class="prose reveal" data-delay="100" style="align-self:center;">
+                <p>
+                  Use <code>\</code> to escape characters that would otherwise be parsed:
+                </p>
+                <table class="qc-table">
+                  <thead><tr><th>Escape</th><th>Produces</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>\.</code></td><td>a literal period, not a terminator</td></tr>
+                    <tr><td><code>\_</code></td><td>a literal underscore, not a type suffix</td></tr>
+                    <tr><td><code>\\</code></td><td>a literal backslash</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+
+          <!-- ERRORS -->
+          <article class="docs-section" id="errors">
+            <h2>Error messages <a class="hash" href="#errors">#</a></h2>
+            <p>
+              Every error follows one shape: <code>error &lt;what&gt; on line &lt;N&gt;(&lt;which statement&gt;)</code>.
+              Line numbers and statement context included, always.
+            </p>
+            <div class="docs-grid">
+              <div class="reveal">
+                <div class="error-callout">error cannot reassign constant on line 12(new statement)</div>
+                <div class="error-callout" style="margin-top:10px;">error undefined binding on line 4(print statement)</div>
+                <div class="error-callout" style="margin-top:10px;">error missing type declaration on line 2(let statement)</div>
+              </div>
+              <div class="prose reveal" data-delay="100" style="align-self:center;">
+                <p>
+                  The interpreter reports what went wrong, where it happened, and which
+                  kind of statement caused it — no stack traces required to start debugging.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CHEAT SHEET -->
+          <article class="docs-section" id="cheatsheet">
+            <h2>Cheat sheet <a class="hash" href="#cheatsheet">#</a></h2>
+            <table class="qc-table reveal">
+              <thead><tr><th>Keyword</th><th>Meaning</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr><td><code>let</code></td><td>Create a binding</td><td><code>let name = Bob</code></td></tr>
+                <tr><td><code>ts</code></td><td>Type of this binding</td><td><code>name ts string</code></td></tr>
+                <tr><td><code>ats</code></td><td>Above type is (parent binding)</td><td><code>ats string</code></td></tr>
+                <tr><td><code>print</code></td><td>Output until <code>.</code></td><td><code>print Hello World .</code></td></tr>
+                <tr><td><code>ask</code></td><td>Prompt + read input</td><td><code>ask Your name? .</code></td></tr>
+                <tr><td><code>new</code></td><td>Reassign a binding</td><td><code>new i = i + 1 .</code></td></tr>
+                <tr><td><code>if / else</code></td><td>Branch</td><td><code>math if age &gt; 18 … else …</code></td></tr>
+                <tr><td><code>when</code></td><td>Loop while true</td><td><code>math when i &lt; 3 …</code></td></tr>
+                <tr><td><code>define</code></td><td>Declare a function</td><td><code>define double(x) as x * 2</code></td></tr>
+                <tr><td><code>calculate</code></td><td>Return from a function</td><td><code>calculate result_number .</code></td></tr>
+                <tr><td><code>math</code></td><td>Context: bare names → <code>_number</code></td><td><code>math print total .</code></td></tr>
+                <tr><td><code>string</code></td><td>Context: bare names → <code>_string</code></td><td><code>string print name .</code></td></tr>
+                <tr><td><code>constant / const</code></td><td>No-reassignment modifier</td><td><code>pi ts constant number</code></td></tr>
+                <tr><td><code>!! … !!</code></td><td>Single-line comment</td><td><code>!! note !!</code></td></tr>
+                <tr><td><code>!!! … !!!</code></td><td>Multi-line comment</td><td><code>!!! long note !!!</code></td></tr>
+              </tbody>
+            </table>
+
+            <div class="center-cta" style="text-align:left; margin-top: var(--s-6);">
+              <a href="examples.html" class="btn btn--primary btn--glow">
+                See it all together in examples <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="shared/nav.js" defer></script>
+  <script src="shared/motion.js" defer></script>
+  <script>
+    // Docs TOC active-state highlighting
+    document.addEventListener('DOMContentLoaded', function () {
+      var links = document.querySelectorAll('.docs-toc a');
+      var map = {};
+      links.forEach(function (a) {
+        var id = a.getAttribute('href').slice(1);
+        map[id] = a;
+      });
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              links.forEach(function (l) { l.classList.remove('is-active'); });
+              var a = map[e.target.id];
+              if (a) a.classList.add('is-active');
+            }
+          });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        document.querySelectorAll('.docs-section').forEach(function (s) { obs.observe(s); });
+      }
+    });
+  </script>
+
+</body>
+</html>

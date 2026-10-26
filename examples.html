@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Examples — Qingchu 清楚</title>
+  <meta name="description" content="Real Qingchu programs: hello world, a grade calculator, and the everything test that exercises every feature of the language." />
+  <meta name="theme-color" content="#008080" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="shared/tokens.css" />
+  <link rel="stylesheet" href="shared/base.css" />
+  <link rel="stylesheet" href="shared/nav.css" />
+  <link rel="stylesheet" href="shared/motion.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-page="examples">
+
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb--teal"></span>
+    <span class="orb orb--cyan"></span>
+    <span class="orb orb--lime"></span>
+  </div>
+
+  <div id="nav-mount"></div>
+
+  <main>
+
+    <!-- ============================================================
+         PAGE HEADER
+         ============================================================ -->
+    <section class="hero" style="padding-bottom: var(--s-6);">
+      <div class="container">
+        <span class="eyebrow eyebrow--animated">
+          <span class="eyebrow__dot"></span>
+          From the repository · examples/
+        </span>
+        <h1 class="hero__title" style="font-size: var(--fs-h1);">
+          Example <span class="accent">programs</span>
+        </h1>
+        <p class="hero__lede">
+          Real <code style="font-family:var(--mono);">.qc</code> files shipped with Qingchu.
+          Run any of them with
+          <code style="font-family:var(--mono);">java -cp out qingchu.Main run examples/&lt;file&gt;.qc</code>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXAMPLES
+         ============================================================ -->
+    <section class="section" style="padding-top: var(--s-7);">
+      <div class="container">
+        <div class="example-list">
+
+          <!-- HELLO WORLD -->
+          <article class="example">
+            <div class="example__meta reveal reveal--left">
+              <div class="example__badges">
+                <span class="badge">hello.qc</span>
+                <span class="badge badge--lime">Beginner</span>
+              </div>
+              <h3>Hello World</h3>
+              <p>
+                The shortest complete program: declare a binding with its type block,
+                then reference it by <code>name_type</code> inside a print statement.
+              </p>
+              <p>
+                One statement per sentence — the lone <code>.</code> closes the
+                <code>print</code>, exactly like a full stop.
+              </p>
+            </div>
+            <div class="code-window reveal reveal--right">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">hello.qc</span>
+              </div>
+<pre><span class="k">let</span> greeting <span class="o">=</span> Hello
+    greeting <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">print</span> greeting_string World <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Output</b>Hello World</div>
+            </div>
+          </article>
+
+          <!-- VARIABLES AND TYPES -->
+          <article class="example">
+            <div class="example__meta reveal reveal--left">
+              <div class="example__badges">
+                <span class="badge">vars.qc</span>
+                <span class="badge badge--lime">Beginner</span>
+              </div>
+              <h3>Variables &amp; Types</h3>
+              <p>
+                All three built-in types in one file: <code>string</code>,
+                <code>number</code>, and <code>boolean</code>. Each binding declares its
+                type with an indented <code>ts</code> block, then is referenced as
+                <code>name_type</code>.
+              </p>
+              <p>
+                The <code>string</code> context marker lets a bare name resolve to its
+                <code>_string</code> binding automatically.
+              </p>
+              <a href="https://github.com/ykminmin8654/Qingchu/blob/main/examples/vars.qc"
+                 target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">
+                Open the full file <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+            <div class="code-window reveal reveal--right">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">vars.qc</span>
+              </div>
+<pre><span class="k">let</span> name <span class="o\">=</span> Alice
+    name <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">math</span> <span class="k">let</span> age <span class="o\">=</span> <span class="n">16</span> <span class="o">.</span>
+
+<span class="k">let</span> likes_code <span class="o\">=</span> true
+    likes_code <span class="k">ts</span> <span class="t">boolean</span>
+
+<span class="k">print</span> Hello name_string <span class="o">.</span>
+<span class="k">print</span> Age: age_number years old <span class="o">.</span>
+<span class="k">string</span> <span class="k">print</span> You said you like coding: likes_code <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Output</b>Hello Alice
+Age: 16 years old
+You said you like coding: true</div>
+            </div>
+          </article>
+
+          <!-- BRANCHING -->
+          <article class="example">
+            <div class="example__meta reveal reveal--left">
+              <div class="example__badges">
+                <span class="badge">if.qc</span>
+                <span class="badge badge--lime">Beginner</span>
+              </div>
+              <h3>Branching — if / else</h3>
+              <p>
+                Conditions use plain math notation (<code>age &gt; 18</code>) inside the
+                <code>math</code> context. Blocks open with indentation alone — no braces,
+                no <code>end</code> keyword.
+              </p>
+              <a href="https://github.com/ykminmin8654/Qingchu/blob/main/examples/if.qc"
+                 target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">
+                Open the full file <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+            <div class="code-window reveal reveal--right">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">if.qc</span>
+              </div>
+<pre><span class="k">math</span> <span class="k">let</span> age <span class="o\">=</span> <span class="n">20</span> <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">if</span> age <span class="o">&gt;</span> <span class="n">18</span>
+    <span class="k">print</span> You are an adult <span class="o">.</span>
+<span class="k">else</span>
+    <span class="k">print</span> You are a minor <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Output</b>You are an adult</div>
+            </div>
+          </article>
+
+          <!-- WHEN LOOP -->
+          <article class="example">
+            <div class="example__meta reveal reveal--left">
+              <div class="example__badges">
+                <span class="badge">loop.qc</span>
+                <span class="badge badge--lime">Beginner</span>
+              </div>
+              <h3>Loops — when</h3>
+              <p>
+                A loop reads like a sentence: <em>when i is less than 3, print the count
+                and step forward</em>. Reassignment is always explicit with
+                <code>new</code>.
+              </p>
+              <a href="https://github.com/ykminmin8654/Qingchu/blob/main/examples/loop.qc"
+                 target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">
+                Open the full file <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+            <div class="code-window reveal reveal--right">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">loop.qc</span>
+              </div>
+<pre><span class="k">math</span> <span class="k">let</span> i <span class="o\">=</span> <span class="n">0</span> <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">when</span> i <span class="o">&lt;</span> <span class="n">3</span>
+    <span class="k">print</span> Count: i <span class="o">.</span>
+    <span class="k">math</span> <span class="k">new</span> i <span class="o\">=</span> i <span class="o\">+</span> <span class="n">1</span> <span class="o">.</span>
+
+<span class="k">print</span> Done. Loop ran 3 times <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Output</b>Count: 0
+Count: 1
+Count: 2
+Done. Loop ran 3 times</div>
+            </div>
+          </article>
+
+          <!-- GRADE CALCULATOR -->
+          <article class="example">
+            <div class="example__meta reveal reveal--left">
+              <div class="example__badges">
+                <span class="badge">grade_calculator.qc</span>
+                <span class="badge badge--lime">Intermediate</span>
+              </div>
+              <h3>Grade Calculator</h3>
+              <p>
+                The full program from the repo: loop with <code>ask</code> +
+                <code>when</code>, accumulate with <code>new</code>, divide for an
+                average, then walk nested <code>if / else</code> branches to assign
+                a letter grade.
+              </p>
+              <p>
+                Conditions read like arithmetic (<code>average &gt; 89</code>) and
+                blocks open with indentation alone.
+              </p>
+              <a href="https://github.com/ykminmin8654/Qingchu/blob/main/examples/grade_calculator.qc"
+                 target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">
+                Open the full file <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+            <div class="code-window reveal reveal--right">
+              <div class="code-window__bar">
+                <span></span><span></span><span></span>
+                <span class="code-window__name">grade_calculator.qc</span>
+              </div>
+<pre><span class="k">print</span> Grade Calculator <span class="o">.</span>
+<span class="k">print</span> Enter scores one at a time. Type 0 to finish. <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">let</span> total <span class="o">=</span> <span class="n">0</span> <span class="o">.</span>
+<span class="k">math</span> <span class="k">let</span> count <span class="o">=</span> <span class="n">0</span> <span class="o">.</span>
+
+<span class="k">ask</span> Enter a score (0 to finish): <span class="o">.</span>
+    response <span class="o">=</span> score
+        score <span class="k">ts</span> <span class="t">number</span>
+
+<span class="k">math</span> <span class="k">when</span> score <span class="o">&gt;</span> 0
+    <span class="k">math</span> <span class="k">new</span> total <span class="o">=</span> total <span class="o">+</span> score <span class="o">.</span>
+    <span class="k">math</span> <span class="k">new</span> count <span class="o">=</span> count <span class="o">+</span> 1 <span class="o">.</span>
+
+    <span class="k">ask</span> Enter a score (0 to finish): <span class="o">.</span>
+        response <span class="o">=</span> score
+            score <span class="k">ts</span> <span class="t">number</span>
+
+<span class="k">math</span> <span class="k">let</span> average <span class="o">=</span> total <span class="o">/</span> count <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">print</span> Average: average <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">if</span> average <span class="o">&gt;</span> 89
+    <span class="k">print</span> Letter grade: A <span class="o">.</span>
+<span class="k">else</span>
+    <span class="k">math</span> <span class="k">if</span> average <span class="o">&gt;</span> 79
+        <span class="k">print</span> Letter grade: B <span class="o">.</span>
+    <span class="k">else</span>
+        <span class="k">math</span> <span class="k">if</span> average <span class="o">&gt;</span> 69
+            <span class="k">print</span> Letter grade: C <span class="o">.</span>
+        <span class="k">else</span>
+            <span class="k">math</span> <span class="k">if</span> average <span class="o">&gt;</span> 59
+                <span class="k">print</span> Letter grade: D <span class="o">.</span>
+            <span class="k">else</span>
+                <span class="k">print</span> Letter grade: F <span class="o">.</span></pre>
+              <div class="code-window__out"><b>Session</b>Enter a score (0 to finish): <span class="n">92</span>
+Enter a score (0 to finish): <span class="n">85</span>
+Enter a score (0 to finish): <span class="n">0</span>
+Average: 88.5
+Letter grade: B</div>
+            </div>
+          </article>
+
+          <!-- EVERYTHING TEST -->
+          <article class="example">
+            <div class="example__meta reveal reveal--left">
+              <div class="example__badges">
+                <span class="badge">everything.qc</span>
+                <span class="badge badge--lime">Language tour</span>
+              </div>
+              <h3>The Everything Test</h3>
+              <p>
+                Every feature in one file — comments, declarations, math and string
+                contexts, constants, branching, loops, countdowns, functions, and input.
+              </p>
+              <p>
+                Sections below follow the file's own <code>!! numbered comments !!</code>.
+                Function parsing is live; function execution is on the roadmap.
+              </p>
+              <a href="https://github.com/ykminmin8654/Qingchu/blob/main/examples/everything.qc"
+                 target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">
+                Open the full file <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap: var(--s-5);">
+
+              <div class="code-window reveal reveal--right">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">everything.qc — 1 · comments, let + print, math</span>
+                </div>
+<pre><span class="c">!! --- 1. Comments --- !!</span>
+<span class="c">!!! This is a multi-line comment
+    it continues here
+!!!</span>
+
+<span class="k">let</span> greeting <span class="o">=</span> Hello
+    greeting <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">print</span> greeting_string <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">let</span> price <span class="o">=</span> <span class="n">10</span> <span class="o">.</span>
+<span class="k">math</span> <span class="k">let</span> quantity <span class="o">=</span> <span class="n">5</span> <span class="o">.</span>
+<span class="k">math</span> <span class="k">let</span> total <span class="o">=</span> price <span class="o">*</span> quantity <span class="o">.</span>
+<span class="k">math</span> <span class="k">print</span> total <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>Hello
+50</div>
+              </div>
+
+              <div class="code-window reveal reveal--right" data-delay="100">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">everything.qc — 2 · constant, if / else, when loops</span>
+                </div>
+<pre><span class="k">let</span> pi <span class="o">=</span> 3.14
+    pi <span class="k">ts</span> <span class="t">constant number</span>
+
+<span class="k">print</span> pi_constant_number <span class="o">.</span>
+
+<span class="k">math</span> <span class="k">if</span> age <span class="o">&gt;</span> 18
+    <span class="k">print</span> You are an adult <span class="o">.</span>
+<span class="k">else</span>
+    <span class="k">print</span> You are a minor <span class="o">.</span>
+
+<span class="c">!! --- 8. When loop --- !!</span>
+<span class="k">math</span> <span class="k">when</span> i <span class="o">&lt;</span> 3
+    <span class="k">print</span> Count: i <span class="o">.</span>
+    <span class="k">new</span> i <span class="o">=</span> i <span class="o">+</span> 1 <span class="o">.</span>
+
+<span class="c">!! --- 9. Countdown --- !!</span>
+<span class="k">math</span> <span class="k">when</span> n <span class="o">&gt;</span> 0
+    <span class="k">print</span> n <span class="o">.</span>
+    <span class="k">new</span> n <span class="o">=</span> n <span class="o">-</span> 1 <span class="o">.</span>
+
+<span class="k">print</span> Liftoff <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Output</b>3.14
+Count: 0
+Count: 1
+Count: 2
+5 4 3 2 1
+Liftoff</div>
+              </div>
+
+              <div class="code-window reveal reveal--right" data-delay="200">
+                <div class="code-window__bar">
+                  <span></span><span></span><span></span>
+                  <span class="code-window__name">everything.qc — 3 · define, ask for input</span>
+                </div>
+<pre><span class="c">!! --- 10. Define a function --- !!</span>
+<span class="k">define</span> double(x) <span class="k">as</span> x <span class="o">*</span> 2
+    x <span class="k">ts</span> <span class="t">number</span>
+    double <span class="k">ts</span> <span class="t">number</span>
+
+<span class="c">!! --- 11. Define with block body --- !!</span>
+<span class="k">define</span> square(x) <span class="k">as</span>
+    x <span class="k">ts</span> <span class="t">number</span>
+    square <span class="k">ts</span> <span class="t">number</span>
+
+    <span class="k">let</span> result <span class="o">=</span> x_number <span class="o">*</span> x_number
+        result <span class="k">ts</span> <span class="t">number</span>
+
+    <span class="k">calculate</span> result_number <span class="o">.</span>
+
+<span class="c">!! --- 12. Ask for input --- !!</span>
+<span class="k">ask</span> What is your name? <span class="o">.</span>
+    response <span class="o">=</span> name
+        name <span class="k">ts</span> <span class="t">string</span>
+
+<span class="k">string</span> <span class="k">print</span> Nice to meet you, name <span class="o">.</span>
+
+<span class="k">print</span> All tests complete <span class="o">.</span></pre>
+                <div class="code-window__out"><b>Session</b>What is your name? <span class="n">Ada</span>
+Nice to meet you, Ada
+All tests complete</div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+        <!-- FINAL CTA -->
+        <div class="cta reveal" style="margin-top: var(--s-8);">
+          <div class="cta__copy">
+            <h2>Try it yourself.</h2>
+            <p>Clone the repo, compile once, and run any <code>.qc</code> file — or play in the REPL.</p>
+          </div>
+          <a href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener" class="btn btn--primary btn--glow">
+            <i class="fab fa-github"></i> Get Qingchu on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="shared/nav.js" defer></script>
+  <script src="shared/motion.js" defer></script>
+
+</body>
+</html>
