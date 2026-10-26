@@ -1,6 +1,6 @@
 # Qingchu 清楚 — Website
 
-A static website for the [Qingchu programming language](https://github.com/ykminmin8654/Qingchu),
+A static website for the [Qingchu programming language](https://innovationearthprojects.org),
 styled after the design system of [innovationearthprojects.org](https://innovationearthprojects.org):
 teal / cyan / lime palette, glassy cards, animated background orbs, scroll reveals,
 and micro-interactions.

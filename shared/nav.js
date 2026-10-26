@@ -13,29 +13,63 @@
   var BRAND_MARK = '清楚';
   var BRAND_NAME = 'Qingchu';
 
+  /* ---------------- Path base (GitHub Pages project-site safe) --------- */
+  // On innovationearthprojects.org the site is served from the domain root,
+  // but this project lives under /Qingchu-website/ on GitHub Pages. Derive
+  // the base from shared/nav.js's own URL so internal links never 404 or
+  // "leave" the site by jumping to the domain root.
+  var BASE = (function () {
+    try {
+      var src = document.currentScript && document.currentScript.src;
+      if (!src) {
+        var s = document.getElementsByTagName('script');
+        for (var i = s.length - 1; i >= 0; i--) {
+          if (/shared\/nav\.js/.test(s[i].src)) { src = s[i].src; break; }
+        }
+      }
+      if (src) return src.replace(/shared\/nav\.js.*$/, '');
+    } catch (e) { /* fall through */ }
+    return '/';
+  })();
+  function path(p) { return BASE + p; }
+
+  /* ---------------- External-link policy ---------------- */
+  // Any link that leaves this site must point back to the parent site,
+  // innovationearthprojects.org — with a graceful fallback if it is down.
+  var PARENT_SITE = 'https://innovationearthprojects.org';
+
+  function ext(url, label, iconClass, extraClass) {
+    return '<a class="' + (extraClass || 'ext-parent') + '" data-ext="parent" ' +
+           'href="' + url + '" target="_blank" rel="noopener">' +
+           (iconClass ? '<i class="' + iconClass + '" aria-hidden="true"></i> ' : '') +
+           label +
+           '<i class="fas fa-arrow-up-right-from-square ext__icon" aria-hidden="true"></i>' +
+           '</a>';
+  }
+
   var NAV_LINKS = [
-    { href: '/#features',   label: 'Features',  key: 'features' },
-    { href: '/docs.html',   label: 'Language',  key: 'language' },
-    { href: '/examples.html', label: 'Examples', key: 'examples' },
-    { href: '/#status',     label: 'Status',    key: 'status' },
+    { href: path('#features'),    label: 'Features', key: 'features' },
+    { href: path('docs.html'),    label: 'Language', key: 'language' },
+    { href: path('examples.html'), label: 'Examples', key: 'examples' },
+    { href: path('#status'),      label: 'Status',   key: 'status' },
     {
-      href: 'https://github.com/ykminmin8654/Qingchu',
-      label: 'GitHub',
-      key: 'github',
+      href: PARENT_SITE,
+      label: 'Innovation Earth Projects',
+      key: 'iep',
       external: true
     }
   ];
 
   var FOOTER_SITE_LINKS = [
-    { href: '/',          label: 'Home' },
-    { href: '/docs.html', label: 'Language Reference' },
-    { href: '/examples.html', label: 'Examples' }
+    { href: path(''),            label: 'Home' },
+    { href: path('docs.html'),   label: 'Language Reference' },
+    { href: path('examples.html'), label: 'Examples' }
   ];
 
   var FOOTER_RESOURCE_LINKS = [
-    { href: '/#status',   label: 'Project Status' },
-    { href: '/#faq',      label: 'FAQ' },
-    { href: '/#get-started', label: 'Get Started' }
+    { href: path('#status'),      label: 'Project Status' },
+    { href: path('#faq'),         label: 'FAQ' },
+    { href: path('#get-started'), label: 'Get Started' }
   ];
 
   /* ---------------- Templates ---------------- */
@@ -58,7 +92,7 @@
     return (
       '<nav class="nav" aria-label="Primary">' +
         '<div class="nav__inner">' +
-          '<a class="nav__brand" href="/">' +
+          '<a class="nav__brand" href="' + path('') + '">' +
             '<span class="nav__mark" aria-hidden="true">' + BRAND_MARK + '</span>' +
             '<span class="nav__wordmark">' + BRAND_NAME +
               '<span class="nav__wordmark-zh">· a readable language</span>' +
@@ -70,9 +104,8 @@
           '<div class="nav__links" id="nav-links">' +
             buildNavLinks() +
             '<span class="nav__cta">' +
-              '<a class="btn btn--primary btn--sm" ' +
-              'href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener">' +
-              '<i class="fab fa-github"></i> Star on GitHub</a>' +
+              ext(PARENT_SITE, 'Innovation Earth Projects', 'fas fa-globe',
+                  'btn btn--primary btn--sm ext-parent ext-parent--nav') +
             '</span>' +
           '</div>' +
         '</div>' +
@@ -116,27 +149,91 @@
           '</div>' +
 
           '<div class="footer__col">' +
-            '<h4 class="footer__title">Source</h4>' +
-            '<p class="footer__note">Qingchu lives on GitHub — its own project:</p>' +
+            '<h4 class="footer__title">An Innovation Earth Project</h4>' +
+            '<p class="footer__note">Qingchu is part of the Innovation Earth Projects ' +
+            'family — this site stays on our network; every way-out leads back home:</p>' +
             '<ul class="footer__list">' +
-              '<li><a class="footer__ext" href="https://github.com/ykminmin8654/Qingchu" ' +
-                'target="_blank" rel="noopener">ykminmin8654/Qingchu' +
-                '<i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>' +
-                '<span class="footer__ext-tag">MIT licensed · Java 17+</span></a></li>' +
+              '<li>' + ext(PARENT_SITE, 'innovationearthprojects.org', 'fas fa-globe') + '</li>' +
+              '<li>' + ext(PARENT_SITE + '/#projects', 'More projects', 'fas fa-rocket') + '</li>' +
+              '<li>' + ext(PARENT_SITE + '/#about', 'About us', 'fas fa-seedling') + '</li>' +
             '</ul>' +
           '</div>' +
 
         '</div>' +
 
         '<div class="container footer__bottom">' +
-          '<span>&copy; ' + year + ' Qingchu &middot; Built with a Java interpreter, shipped under MIT.</span>' +
+          '<span>&copy; ' + year + ' Qingchu &middot; An Innovation Earth Project.</span>' +
           '<span class="footer__legal">' +
-            '<a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a>' +
-            '<a href="https://github.com/ykminmin8654/Qingchu" target="_blank" rel="noopener">GitHub</a>' +
+            ext(PARENT_SITE, 'Return to innovationearthprojects.org', 'fas fa-house') +
           '</span>' +
         '</div>' +
       '</footer>'
     );
+  }
+
+  /* ---------------- Off-site guard ---------------- */
+  // Policy: every link that leaves this site must go back to
+  // innovationearthprojects.org. This catch-all rewrites any stray
+  // off-site href (github.com, opensource.org, …) to the parent site,
+  // and adds a graceful fallback if the parent site is unreachable.
+  var OFFSITE_OK = [
+    'innovationearthprojects.org',   // the allowed destination
+    location.hostname                // anything on this very host stays put
+  ];
+
+  function isOffsite(url) {
+    try {
+      var u = new URL(url, location.href);
+      if (u.protocol === 'mailto:' || u.protocol === 'tel:') return false;
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
+      for (var i = 0; i < OFFSITE_OK.length; i++) {
+        if (u.hostname === OFFSITE_OK[i] ||
+            u.hostname.endsWith('.' + OFFSITE_OK[i])) return false;
+      }
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function enforceParentRedirect() {
+    document.addEventListener('click', function (ev) {
+      var a = ev.target.closest ? ev.target.closest('a[href]') : null;
+      if (!a) return;
+      var raw = a.getAttribute('href');
+      if (!raw || raw.charAt(0) === '#') return;
+      if (!isOffsite(a.href)) return;
+      // Rewrite the stray off-site link to the parent site.
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener');
+      a.href = PARENT_SITE;
+      a.dataset.ext = 'parent';
+    }, true);
+
+    // Fallback: if innovationearthprojects.org can't be reached from this
+    // browser, don't strand visitors on a dead tab — keep them here.
+    document.addEventListener('click', function (ev) {
+      var a = ev.target.closest ? ev.target.closest('a[data-ext="parent"]') : null;
+      if (!a) return;
+      if (window.__iepReachable === false) {
+        ev.preventDefault();
+        var note = document.querySelector('.ext-fallback-note');
+        if (!note) {
+          note = document.createElement('div');
+          note.className = 'ext-fallback-note';
+          note.setAttribute('role', 'status');
+          note.textContent = 'innovationearthprojects.org is not reachable right now — you’re staying on this site.';
+          document.body.appendChild(note);
+          setTimeout(function () { note.remove(); }, 4200);
+        }
+      }
+    });
+
+    // Cheap async reachability probe (no-cors opaque response still
+    // resolves when the network path exists; only hard failures reject).
+    try {
+      fetch(PARENT_SITE, { mode: 'no-cors', cache: 'no-store' })
+        .then(function () { window.__iepReachable = true; })
+        .catch(function () { window.__iepReachable = false; });
+    } catch (e) { /* ignore */ }
   }
 
   /* ---------------- Mounting ---------------- */
@@ -185,6 +282,7 @@
   function boot() {
     mountNav();
     mountFooter();
+    enforceParentRedirect();
   }
 
   if (document.readyState === 'loading') {
